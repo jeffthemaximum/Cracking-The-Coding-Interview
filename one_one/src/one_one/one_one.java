@@ -5,8 +5,11 @@ import java.util.HashMap;
 public class one_one {	
 	public static void main(String[] args) {
 		String test_string = "pqwefopqwebfpoqwbef[oqhwepirufhqpouef2-39kbqw";
+		String unique_test_string = "abcdefghijklmnopqrstuvwxyz";
 		HashMap<Character, Integer> hm = new HashMap<Character, Integer>();
 		System.out.println(test_overlap(hm, test_string));
+		HashMap<Character, Integer> hm2 = new HashMap<Character, Integer>();
+		System.out.println(test_overlap(hm2, unique_test_string));
 	}
 	
 	// iterates across string one char at a time. puts chars into hashmap, then returns as soon as it finds a collision.
