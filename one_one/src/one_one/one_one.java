@@ -35,6 +35,7 @@ public class one_one {
 	
 	// book solution: iterates across a string one char at a time. puts bool into array at index of char's ASCII value, 
 	// returns as soon as it finds a collision
+	// also includes tricky check to see if string has more than 256 char's, which is total ASCII char's
 	public static boolean book_test_overlap(String my_test_string){
 		if (my_test_string.length() > 256) {
 			return false;
