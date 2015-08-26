@@ -1,0 +1,45 @@
+/*
+ * You have two numbers represented by a linked list, where each node contains a
+single digit. The digits are stored in reverse order, such that the 1 's digit is at the head
+of the list. Write a function that adds the two numbers and returns the sum as a
+linked list.
+ */
+
+public class Node {
+	int data;
+	Node next = null;
+	
+	public Node(int d) {
+		data = d;
+	}
+	
+	void appendToAll(int d){
+		Node n = this;
+		Node end = new Node(d);
+		while (n.next != null){
+			n = n.next;
+		}
+		n.next = end;
+	}
+	
+	void printList() {
+		Node n = this;
+		while (n.next != null){
+			System.out.println(n.data);
+			n = n.next;
+		}
+		System.out.println(n.data);
+	}
+	
+	public static void main(String[] args){
+		Node ll = new Node(3);
+		ll.appendToAll(9);
+		int sum= 0;
+		sum += ll.data;
+		sum += ll.next.data;
+		Node sumList = new Node(sum % 10);
+		sum = sum / 10;
+		sumList.appendToAll(sum);
+		sumList.printList();
+	}
+}

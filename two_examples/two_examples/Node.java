@@ -50,7 +50,7 @@ public class Node {
 		}
 		Node n = head;
 		n.printList();
-		Node shorterList = deleteNode(n, 3);
+		Node shorterList = deleteNode(n, 5);
 		shorterList.printList();
 	}
 }

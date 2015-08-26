@@ -1,0 +1,54 @@
+/*
+ * Implement an algorithm to find the kth to last element of a singly linked list.
+ */
+
+package two_one;
+
+public class Nodey {
+	Nodey next = null;
+	int data;
+	
+	public Nodey(int d){
+		data = d;
+	}
+	
+	void appendToAll(int d){
+		Nodey end = new Nodey(d);
+		Nodey n = this;
+		while (n.next != null) {
+			n = n.next;
+		}
+		n.next = end;
+	}
+		
+	void printList() {
+		Nodey n = this;
+		while (n.next != null){
+			System.out.println(n.data);
+			n = n.next;
+		}
+		System.out.println(n.data);
+	}
+	
+	void deleteNodeAtK(int k) {
+		Nodey n = this;
+		Nodey runner = null;
+		int counter = 0;
+		while (n.next != null) {
+			n = n.next;
+			counter++;
+		}
+		System.out.println(counter);
+	}
+	
+	public static void main(String[] args){
+		Nodey head = new Nodey(5);
+		head.appendToAll(1);
+		head.appendToAll(7);
+		head.appendToAll(3);
+		head.appendToAll(7);
+		head.appendToAll(4);
+		head.appendToAll(3);
+		head.deleteNodeAtK(1);
+	}
+}

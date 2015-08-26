@@ -1,0 +1,40 @@
+package two_one;
+
+public class Node {
+	Node next = null;
+	int data;
+	
+	public Node(int d){
+		data = d;
+	}
+	
+	void appendToAll(int d){
+		Node end = new Node(d);
+		Node n = this;
+		while (n.next != null) {
+			n = n.next;
+		}
+		n.next = end;
+	}
+		
+	void printList() {
+		Node n = this;
+		while (n.next != null){
+			System.out.println(n.data);
+			n = n.next;
+		}
+		System.out.println(n.data);
+	}
+		
+	public static void main(String[] args){
+		Node head = new Node(5);
+		head.appendToAll(1);
+		head.appendToAll(7);
+		head.appendToAll(3);
+		head.appendToAll(7);
+		head.appendToAll(4);
+		head.appendToAll(3);
+		head.printList();
+	}
+}	
+	

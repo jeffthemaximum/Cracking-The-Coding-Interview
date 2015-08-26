@@ -1,0 +1,5 @@
+INDEX VERSION 1.127+/Users/jeff/Dropbox/projects/cracking_the_coding_interview/.metadata/.plugins/org.eclipse.jdt.core
+1180026457.index
+3833847377.index
+770951886.index
+4175070927.index

@@ -1,0 +1,57 @@
+package two_one;
+import java.util.HashMap;
+
+public class Node {
+	Node next = null;
+	int data;
+	
+	public Node(int d){
+		data = d;
+	}
+	
+	void appendToAll(int d){
+		Node end = new Node(d);
+		Node n = this;
+		while (n.next != null) {
+			n = n.next;
+		}
+		n.next = end;
+	}
+		
+	void printList() {
+		Node n = this;
+		while (n.next != null){
+			System.out.println(n.data);
+			n = n.next;
+		}
+		System.out.println(n.data);
+	}
+		
+	public static void main(String[] args){
+		Node head = new Node(5);
+		head.appendToAll(1);
+		head.appendToAll(7);
+		head.appendToAll(3);
+		head.appendToAll(7);
+		head.appendToAll(4);
+		head.appendToAll(3);
+		Node unsortedLL = head;
+		
+		HashMap<Integer, Integer>hm = new HashMap<Integer, Integer>();
+		while (unsortedLL.next != null){
+			int count = 0;
+			if (hm.containsKey(unsortedLL.data)) {
+				count = hm.get(unsortedLL.data);
+			}
+			hm.put(unsortedLL.data, count);
+		}
+		
+		Node noRepeats = new Node(1);
+		for (int key : hm.keySet()) {
+			noRepeats.appendToAll(key);
+		}
+		noRepeats = noRepeats.next;
+		noRepeats.printList();
+	}
+}	
+	

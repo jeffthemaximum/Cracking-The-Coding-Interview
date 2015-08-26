@@ -1,0 +1,85 @@
+/*
+ * Implement an algorithm to find the kth to last element of a singly linked list.
+ */
+
+package two_one;
+
+public class Nodey {
+	Nodey next = null;
+	int data;
+	
+	public Nodey(int d){
+		data = d;
+	}
+	
+	void appendToAll(int d){
+		Nodey end = new Nodey(d);
+		Nodey n = this;
+		while (n.next != null) {
+			n = n.next;
+		}
+		n.next = end;
+	}
+	
+	static Nodey deleteNode(Nodey head, int d){
+		Nodey n = head;
+		
+		if (n.data == d) {
+			return head.next;
+		}
+		
+		while (n.next != null) {
+			if (n.next.data == d) {
+				n.next = n.next.next;
+				return head;
+			}
+			n = n.next;
+		}
+		return head;
+	}
+		
+	void printList() {
+		Nodey n = this;
+		while (n.next != null){
+			System.out.println(n.data);
+			n = n.next;
+		}
+		System.out.println(n.data);
+	}
+	
+	static int getListLength(Nodey n) {
+		int counter = 1;
+		while (n.next != null) {
+			n = n.next;
+			counter++;
+		}
+		return counter;
+	}
+	
+	static Nodey deleteNodeAtK(Nodey n, int k) {
+		int counter = getListLength(n);
+		Nodey runner = null;
+		int index = counter - k;
+		int stop = 1;
+		while (stop <= index) {
+			if (stop == index) {
+				return deleteNode(n, runner.data);
+			}
+			stop++;
+			runner = runner.next;
+		}
+		return n;
+	}
+	
+	public static void main(String[] args){
+		Nodey head = new Nodey(5);
+		head.appendToAll(1);
+		head.appendToAll(7);
+		head.appendToAll(3);
+		head.appendToAll(7);
+		head.appendToAll(4);
+		head.appendToAll(3);
+		Nodey n = deleteNodeAtK(head, 3);
+		n.printList();
+	}
+}
