@@ -1,0 +1,92 @@
+package two_six;
+import java.util.HashMap;
+
+/*
+ Given a circular linked list, implement an algorithm which returns the node at
+the beginning of the loop.
+DEFINITION
+Circular linked list: A (corrupt) linked list in which a node's next pointer points
+to an earlier node, so as to make a loop in the linked list.
+EXAMPLE
+Input: A - > B - > C - > D - > E - > C [the same C as earlier]
+Output: C
+ */
+
+public class Node {
+	int data;
+	Node next = null;
+	
+	public Node(int d){
+		data = d;
+	}
+	
+	void appendToAll(int d){
+		Node n = this;
+		Node end = new Node(d);
+		while (n.next != null) {
+			n = n.next;
+		}
+		n.next = end;
+	}
+	
+	Node deleteNode(Node head, int d) {
+		Node n = head;
+		
+		if (n.data == d) {
+			return n.next;
+		}
+		
+		while (n.next != null) {
+			if (n.next.data == d) {
+				n.next = n.next.next;
+				return head;
+			}
+			n = n.next;
+		}
+		return head;
+	}
+	
+	static Node setupCircularList() {
+		Node head = new Node(1);
+		head.appendToAll(2);
+		head.appendToAll(3);
+		head.appendToAll(4);
+		head.appendToAll(5);
+		Node n = head;
+		Node y = head;
+		//get to last node
+		while (head.next != null) {
+			head = head.next;
+		}
+		//get to earlier node
+		while (n.data != 2) {
+			n = n.next;
+		}
+		//set last node.next equal to earlier node
+		head.next = n;
+		//return y cuz it's set to first node;
+		return y;
+	}
+	
+	static int repeatNode(Node n) {
+		//setup hashmap to keep track of int's in LL
+		HashMap<Integer, Boolean> hm = new HashMap<Integer, Boolean>();
+		//iterate over LL
+		while (n.next != null) {
+			//check if ll contains ll.data
+			//if it does, then this is the node that repeats the circle
+			if (hm.containsKey(n.data)) {
+				return n.data;
+			} else {
+				hm.put(n.data, true);
+				n = n.next;
+			}
+		}
+		return 0;
+	}
+	
+	public static void main (String[] args) {
+		Node circularList = setupCircularList();
+		System.out.println(repeatNode(circularList));
+	}
+}

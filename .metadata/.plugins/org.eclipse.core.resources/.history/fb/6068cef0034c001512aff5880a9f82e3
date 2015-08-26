@@ -1,0 +1,19 @@
+package two_six;
+
+public class Node {
+	int data;
+	Node next = null;
+	
+	public Node(int d){
+		data = d;
+	}
+	
+	void appendToAll(int d){
+		Node n = this;
+		Node end = new Node(d);
+		while (n.next != null) {
+			n = n.next;
+		}
+		
+	}
+}
