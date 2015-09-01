@@ -1,5 +1,3 @@
-//determine if a linked list is a palindrome!
-
 package two_seven;
 
 import java.util.Stack;
