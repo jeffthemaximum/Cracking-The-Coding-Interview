@@ -1,0 +1,82 @@
+package two_seven;
+
+public class Node {
+	int data;
+	Node next = null;
+	
+	public Node(int d){
+		data = d;
+	}
+	
+	public void appendToAll(int d){
+		Node end = new Node(d);
+		Node n = this;
+		while (n.next != null) {
+			n = n.next;
+		}
+		n.next = end;
+	}
+	
+	public static Node deleteFromList(int d, Node head){
+		Node n = head;
+		if (n.data == d){
+			return n.next;
+		}
+		
+		while (n.next != null) {
+			if (n.next.data == d) {
+				n.next = n.next.next;
+				return head;
+			}
+			n = n.next;
+		}
+		return head;
+	}
+	
+	public static void printList(Node n) {
+		while (n.next != null) {
+			System.out.println(n.data);
+			n = n.next;
+		}
+		System.out.println(n.data);
+	}
+	
+	public static void listLength(Node n) {
+		//initialize fr and sr to point at head of list;
+		Node fastRunner, slowRunner;
+		fastRunner = n;
+		slowRunner = n;
+		int count = 0;
+		
+		//move sr one step and move fr two steps
+		while (fastRunner != null && fastRunner.next != null) {
+			slowRunner = slowRunner.next;
+			fastRunner = fastRunner.next.next;
+			count++;
+		}
+		
+		//for even number of nodes in list, 
+		//move sr one extra step to get to 
+		//beginning of second half of list
+		if (fastRunner != null){
+			slowRunner = slowRunner.next;
+		}
+		
+		System.out.println(count * 2);
+	}
+	
+	public static void main(String[] args) {
+		// make test list using homemade appendToAll function
+		Node head = new Node(1);
+		head.appendToAll(2);
+		head.appendToAll(3);
+		head.appendToAll(4);
+		head.appendToAll(5);
+		// print out test list just to make sure all is well. 
+		printList(head);
+		
+		//get list length
+		listLength(head);
+	}
+
+}

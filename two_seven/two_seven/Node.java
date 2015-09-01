@@ -1,0 +1,98 @@
+package two_seven;
+
+import java.util.Stack;
+
+public class Node {
+	int data;
+	Node next = null;
+	
+	public Node(int d){
+		data = d;
+	}
+	
+	public void appendToAll(int d){
+		Node end = new Node(d);
+		Node n = this;
+		while (n.next != null) {
+			n = n.next;
+		}
+		n.next = end;
+	}
+	
+	public static Node deleteFromList(int d, Node head){
+		Node n = head;
+		if (n.data == d){
+			return n.next;
+		}
+		
+		while (n.next != null) {
+			if (n.next.data == d) {
+				n.next = n.next.next;
+				return head;
+			}
+			n = n.next;
+		}
+		return head;
+	}
+	
+	public static void printList(Node n) {
+		while (n.next != null) {
+			System.out.println(n.data);
+			n = n.next;
+		}
+		System.out.println(n.data);
+	}
+	
+	public static boolean palindromeCheck(Node n) {
+		//initialize fr and sr to point at head of list;
+		Node fastRunner, slowRunner;
+		fastRunner = n;
+		slowRunner = n;
+		int count = 0;
+		
+		//initialize stack to push int's onto
+		Stack<Integer> stack = new Stack<Integer>();
+		
+		//move sr one step and move fr two steps
+		while (fastRunner != null && fastRunner.next != null) {
+			stack.push(slowRunner.data);
+			slowRunner = slowRunner.next;
+			fastRunner = fastRunner.next.next;
+			count++;
+		}
+		
+		//for odd number of nodes in list, 
+		//move sr one extra step to get to 
+		//skip middle element, which doesn't affect palindrominess
+		if (fastRunner != null){
+			slowRunner = slowRunner.next;
+		}
+		
+		//now sr is at beginning of second half of list
+		//and stack has elements from first half in reverse order
+		// continue moving sr and compare with elements in stack
+		while (slowRunner != null) {
+			int top = stack.pop().intValue();
+			if (slowRunner.data != top) {
+				return false;
+			}
+			slowRunner = slowRunner.next;
+		}
+		return true;
+	}
+	
+	public static void main(String[] args) {
+		// make test list using homemade appendToAll function
+		Node head = new Node(1);
+		head.appendToAll(2);
+		head.appendToAll(3);
+		head.appendToAll(2);
+		head.appendToAll(1);
+		// print out test list just to make sure all is well. 
+		printList(head);
+		
+		//get list length
+		System.out.println(palindromeCheck(head));
+	}
+
+}
