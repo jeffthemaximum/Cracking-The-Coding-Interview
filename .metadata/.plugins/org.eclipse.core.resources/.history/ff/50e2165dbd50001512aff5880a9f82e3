@@ -21,6 +21,22 @@ public class Node {
 		n.next = end;
 	}
 	
+	public static Node deleteFromList(int d, Node head){
+		Node n = head;
+		if (n.data == d){
+			return n.next;
+		}
+		
+		while (n.next != null) {
+			if (n.next.data == d) {
+				n.next = n.next.next;
+				return head;
+			}
+			n = n.next;
+		}
+		return head;
+	}
+	
 	public static void printList(Node n) {
 		while (n.next != null) {
 			System.out.println(n.data);
@@ -34,6 +50,7 @@ public class Node {
 		Node fastRunner, slowRunner;
 		fastRunner = n;
 		slowRunner = n;
+		int count = 0;
 		
 		//initialize stack to push int's onto
 		Stack<Integer> stack = new Stack<Integer>();
@@ -43,6 +60,7 @@ public class Node {
 			stack.push(slowRunner.data);
 			slowRunner = slowRunner.next;
 			fastRunner = fastRunner.next.next;
+			count++;
 		}
 		
 		//for odd number of nodes in list, 
