@@ -75,7 +75,7 @@ public class Node {
 		// print out test list just to make sure all is well. 
 		printList(head);
 		
-		//check if palindrome
+		//get list length
 		System.out.println(palindromeCheck(head));
 	}
 
