@@ -1,0 +1,17 @@
+
+public class Node {
+	int data;
+	Node next = null;
+	
+	public Node(int d){
+		data = d;
+	}
+	
+	Object pop() {
+		if (top != null) {
+			Node top = top.next;
+		}
+		
+		
+	}
+}

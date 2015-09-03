@@ -1,0 +1,63 @@
+
+public class Node {
+	Object data;
+	Node next = null;
+	
+	public Node(Object item){
+		data = item;
+	}
+}
+
+class Stack {
+	Node top;
+	
+	Object pop() {
+		if (top != null) {
+			Object item = top.data;
+			top = top.next;
+			return item;
+		}
+		return null;
+	}
+	
+	void push(Object item) {
+		Node t = new Node(item);
+		t.next = top;
+		top = t;
+	}
+	
+	Object peek() {
+		return top.data;
+	}
+}
+
+class Queue {
+	Node first, last;
+	
+	void enqueue(Object item) {
+		if (first == null) {
+			first = new Node(item);
+			first = last;
+		} else {
+			last.next = new Node(item);
+			last = last.next;
+		}
+	}
+	
+	Object dequeue(){
+		if (first != null) {
+			Object item = first.data;
+			first = first.next;
+			return item;
+		}
+		return null;
+	}
+	
+	public static void main (String[] args) {
+		int stackSize = 100;
+		int[] buffer = new int[stackSize * 3];
+		int stackPointer = {-1, -1, -1} //pointers to track top element
+	}
+}
+
+
